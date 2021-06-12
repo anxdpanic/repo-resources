@@ -15,7 +15,7 @@ msgstr ""
 
 msgctxt "#0"
 msgid "Programs"
-msgstr "012"
+msgstr "0123"
 
 msgctxt "#1"
 msgid "Pictures"
