@@ -1,0 +1,30 @@
+name: Bump version of updated languages
+
+on:
+  push:
+    branches: [ matrix, lang-test ]
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    name: Bump version of updated languages
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Get changed files
+        id: changed-files
+        uses: jitterbit/get-changed-files@v1
+
+      - name: Bump version of updated languages
+        run: |
+          python3 version_bump.py ${{ steps.changed-files.outputs.all }}
