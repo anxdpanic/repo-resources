@@ -73,14 +73,13 @@ if __name__ == '__main__':
         pass
     elif arg.endswith('.json'):
         with open(arg, 'r') as open_file:
-            json_contents = json.load(open_file)
+            changed_files = json.load(open_file)
 
-        print('a' * 100, json.dumps(json_contents, indent=4))
     else:
         print('No valid argument provided, expected "all" or "path to changed files json".')
         exit(0)
 
-    language_folders = get_language_folders(arg)
+    language_folders = get_language_folders(changed_files)
     if not language_folders:
         print('No modified languages found.')
         exit(0)
