@@ -12,25 +12,23 @@ def increment_version(version):
     return '.'.join(version)
 
 
-if __name__ == '__main__':
-    changed_files = sys.argv
-    if not changed_files:
-        exit(0)
-
-    language_folders = []
-    for changed_file in changed_files:
-        if changed_file.startswith('resource.language') and \
-                changed_file.endswith(('strings.po', 'langinfo.xml')):
-            folder = os.path.split(changed_file)[0]
-            language_folders.append(folder.split('/')[0])
+def get_language_folders(chg_files):
+    payload = []
+    for chg_file in chg_files:
+        if chg_file.startswith('resource.language') and \
+                chg_file.endswith(('strings.po', 'langinfo.xml')):
+            folder = os.path.split(chg_file)[0]
+            payload.append(folder.split('/')[0])
 
     print('Files were modified in the following languages:')
-    for language_folder in language_folders:
-        print('\t{language}'.format(language=language_folder))
+    for language in payload:
+        print('\t{language}'.format(language=language))
 
-    print('')
+    return payload
 
-    addon_xmls = ['/'.join(['.', folder, 'addon.xml']) for folder in language_folders]
+
+def update_addon_xmls(lang_folders):
+    addon_xmls = ['/'.join(['.', folder, 'addon.xml']) for folder in lang_folders]
 
     for addon_xml in addon_xmls:
         print('Reading {filename}'.format(filename=addon_xml))
@@ -61,5 +59,21 @@ if __name__ == '__main__':
             open_file.write(new_xml_content)
 
         print('')
+
+
+if __name__ == '__main__':
+    changed_files = sys.argv
+    if not changed_files:
+        print('No changed files.')
+        exit(0)
+
+    language_folders = get_language_folders(changed_files)
+    if not language_folders:
+        print('No modified languages found.')
+        exit(0)
+
+    print('')
+
+    update_addon_xmls(language_folders)
 
     print('')
