@@ -30,7 +30,7 @@ jobs:
 
       - name: Bump version of updated languages
         run: |
-          python3 version_bump.py ${{ steps.changed-files.outputs.all }}
+          python3 increment_version.py ${{ steps.changed-files.outputs.all }}
 
       - name: Create PR for incremented versions
         uses: peter-evans/create-pull-request@v3.10.0
