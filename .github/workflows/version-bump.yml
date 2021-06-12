@@ -3,6 +3,8 @@ name: Bump version of updated languages
 on:
   push:
     branches: [ matrix, lang-test ]
+    paths:
+      - '**resource.language.**'
 
 jobs:
   default:
