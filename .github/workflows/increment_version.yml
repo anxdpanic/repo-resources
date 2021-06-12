@@ -1,4 +1,4 @@
-name: Bump version of updated languages
+name: Increment_version of updated languages
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 jobs:
   default:
     runs-on: ubuntu-latest
-    name: Bump version of updated languages
+    name: Increment_version of updated languages
 
     steps:
 
