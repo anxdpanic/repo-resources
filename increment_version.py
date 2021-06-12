@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import os
 import re
 import sys
@@ -62,12 +63,24 @@ def update_addon_xmls(lang_folders):
 
 
 if __name__ == '__main__':
-    changed_files = sys.argv
-    if not changed_files:
-        print('No changed files json provided.')
+    argv = sys.argv
+    if len(argv) == 1:
+        print('No argument provided.')
         exit(0)
-    print('a' * 100, changed_files)
-    language_folders = get_language_folders(changed_files)
+
+    arg = argv[1]
+    if arg.lower() == 'all':
+        pass
+    elif arg.endswith('.json'):
+        with open(arg, 'r') as open_file:
+            json_contents = json.load(open_file)
+
+        print('a' * 100, json.dumps(json_contents, indent=4))
+    else:
+        print('No valid argument provided, expected "all" or "path to changed files json".')
+        exit(0)
+
+    language_folders = get_language_folders(arg)
     if not language_folders:
         print('No modified languages found.')
         exit(0)
