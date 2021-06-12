@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
     print('')
 
-    addon_xmls = ['/'.join([folder, 'addon.xml']) for folder in language_folders]
+    addon_xmls = ['/'.join(['.', folder, 'addon.xml']) for folder in language_folders]
 
     for addon_xml in addon_xmls:
         print('Reading {filename}'.format(filename=addon_xml))
@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
         print('Writing {filename}'.format(filename=addon_xml))
         with open(addon_xml, 'w') as open_file:
-            open_file.write(xml_content)
+            open_file.write(new_xml_content)
 
         print('')
 
