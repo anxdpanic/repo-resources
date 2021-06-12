@@ -29,7 +29,7 @@ jobs:
 
       - name: Bump version of updated languages
         run: |
-          python3 increment_version.py
+          python3 increment_version.py $HOME/files.json
 
       - name: Create PR for incremented versions
         uses: peter-evans/create-pull-request@v3.10.0
