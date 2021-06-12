@@ -4,7 +4,8 @@ on:
   push:
     branches: [ matrix, lang-test ]
     paths:
-      - '**resource.language.**'
+      - '**resource.language.**strings.po'
+      - '**resource.language.**langinfo.xml'
 
 jobs:
   default:
