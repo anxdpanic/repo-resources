@@ -64,9 +64,9 @@ def update_addon_xmls(lang_folders):
 if __name__ == '__main__':
     changed_files = sys.argv
     if not changed_files:
-        print('No changed files.')
+        print('No changed files json provided.')
         exit(0)
-
+    print('a' * 100, changed_files)
     language_folders = get_language_folders(changed_files)
     if not language_folders:
         print('No modified languages found.')
