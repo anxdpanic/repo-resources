@@ -1,4 +1,3 @@
-# Kodi Media Center language file
 msgid ""
 msgstr ""
 "Project-Id-Version: KODI Main\n"
