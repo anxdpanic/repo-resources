@@ -2,7 +2,7 @@ name: Increment version of updated languages
 
 on:
   push:
-    branches: [ matrix, nexus ]
+    branches: [ matrix, nexus, lang-test ]
     paths:
       - '**resource.language.**strings.po'
       - '**resource.language.**langinfo.xml'
@@ -24,7 +24,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          repository: xbmc/weblate-supplementary-scripts
+          repository: anxdpanic/weblate-supplementary-scripts
+          ref: dev
           path: scripts
 
       - name: Set up Python
